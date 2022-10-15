@@ -4,7 +4,7 @@ import logo from "../../Images/logo.png";
 export default function index() {
   return (
     <div className=" w-screen overflow-hidden  flex flex-row justify-around p-3   ">
-      <img src={logo} alt="" className="w-1/12" />
+      <img src={logo} alt="logo" className="w-3/12 sm:w-1/12 " />
 
       <div className="flex space-x-2 justify-center">
         <button
