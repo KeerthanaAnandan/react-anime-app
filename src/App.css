@@ -8,3 +8,21 @@
   width: 100vw !important;
   overflow: hidden;
 }
+/* .rounded-50-custom {
+  border-radius: 50%;
+  height: 50px;
+} */
+/* .containerX {
+  position: relative;
+}
+.containerbackground {
+  position: absolute;
+  top: 100%;
+  /* z-index: -1; */
+/* transform: rotate(300deg);
+  -webkit-transform: rotate(300deg);
+  color: #5b21b6;
+  font-size: 20px;
+  font-weight: 500;
+  opacity: 0.5;
+} */

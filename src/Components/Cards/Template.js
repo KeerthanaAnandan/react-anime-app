@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Template(props) {
+  const [cart, setCart] = useState([]);
+  useEffect(() => {
+    // var a = [];
+    // console.log("im getting created again");
+    localStorage.setItem("watchCartArr", JSON.stringify(cart));
+  }, [cart]);
+  const handleWatchList = () => {
+    // console.log("i am working");
+    // console.log(props.Data);
+
+    // let b = localStorage.getItem("watchList");
+    // b.push(props.Data);
+    console.log(cart, "carttu");
+    // setCart([...cart, { id: props.Data.id, title: props.Data.title }]);
+    // setCart([...cart, props.Data]);
+    // setCart((cart) => [...cart, props.Data]);
+    setCart((current) => [...current, props.Data]);
+
+    console.log("cart2", cart);
+    // setCart((oldCart) => [
+    //   ...oldCart,
+    //   { id: props.Data.id, title: props.Data.title },
+    // ]);
+  };
+  window.addEventListener("storage", () => {
+    console.log("change to local storage!");
+  });
   return (
-    <div className=" w-full md:w-1/2 lg:w-1/5 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+    <div className=" w-full md:w-1/2 lg:w-1/5 pl-5 pr-5 mb-5 ">
       <div
         style={{
           background: `url(${props.Data.images.jpg.large_image_url}) no-repeat center center fixed  `,
@@ -36,6 +63,7 @@ export default function Template(props) {
             <button
               href="javascript:;"
               className="rounded-full bg-purple-800 text-white hover:bg-white hover:text-purple-900 hover:shadow-xl focus:outline-none w-10 h-10 flex ml-auto transition duration-300"
+              onClick={handleWatchList}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

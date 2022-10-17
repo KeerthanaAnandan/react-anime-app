@@ -42,7 +42,7 @@ export default function Index() {
   };
 
   return (
-    <div>
+    <div className="m-5">
       {/* <Template /> */}
       <div className="flex flex-col items-center justify-center">
         {/* logo */}
@@ -103,7 +103,7 @@ export default function Index() {
         </div>
       </div>
       <br />
-      <div className="flex items-start  w-screen min-h-screen">
+      <div className="flex items-start  ">
         <div className="container ml-auto mr-auto flex flex-wrap items-center justify-center ">
           {loading ? (
             <img
