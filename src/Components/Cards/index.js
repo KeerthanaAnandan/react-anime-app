@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import SingleCard from "./SingleCard";
+// import SingleCard from "./SingleCard";
 import Template from "./Template";
 import axios from "axios";
 import logo from "../../Images/logo.png";
-export default function Index() {
+export default function ({ cart, setCart }) {
   const [anime, setAnime] = useState([]);
   const [search, setSearch] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
@@ -16,6 +16,7 @@ export default function Index() {
   useEffect(() => {
     getGenres();
   }, [anime]);
+
   const myFunction = async () => {
     await axios.get("https://api.jikan.moe/v4/anime").then((res) => {
       setAnime(res.data.data);
@@ -138,7 +139,14 @@ export default function Index() {
                 }
               })
               .map((itm) => {
-                return <Template Data={itm} key={itm.mal_id} />;
+                return (
+                  <Template
+                    Data={itm}
+                    key={itm.mal_id}
+                    cart={cart}
+                    setCart={setCart}
+                  />
+                );
               })
           ) : (
             <p className="text-white"> "no data found"</p>

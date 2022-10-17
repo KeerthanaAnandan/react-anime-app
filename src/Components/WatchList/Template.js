@@ -2,21 +2,32 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-export default function Template() {
+export default function Template({ data, cart, setCart }) {
+  const removeWatchListHandler = () => {
+    setCart(cart.filter((val) => val.mal_id !== data.mal_id));
+  };
   return (
     <div>
-      <div className="flex flex-row items-center rounded-lg bg-gray-500 m-1">
+      <div className="flex flex-row items-center flex-wrap rounded-lg bg-gray-500 m-1 w-full">
         <img
-          src="https://cdn.myanimelist.net/images/anime/4/19644.jpg"
+          src={data.images.jpg.large_image_url}
           alt=""
-          className="w-2/12 rounded-md"
+          className="w-2/12  max-h-40 rounded-md self-start"
         />
-        <p className="text-white px-2">Title comes here</p>
-        <div className="flex items-end justify-end px-2 ml-auto transition duration-300  focus:outline-none cursor-pointer rounded-full">
+        <div className="flex flex-col w-3/4 p-3">
+          <p className="text-white ">{data.title}</p>
+          <p>{data.synopsis.slice(0, 150) + `...`}</p>
+          <p>Rating: {data.score}</p>
+        </div>
+
+        <div
+          onClick={removeWatchListHandler}
+          className="flex items-end justify-end p-2 ml-auto transition duration-300  focus:outline-none cursor-pointer rounded-full"
+        >
           <FontAwesomeIcon
             icon={faCircleXmark}
             className="hover:bg-purple-800 hover:text-white text-purple-800 bg-white rounded-full"
-            size="2xl"
+            size="3x"
           />
         </div>
       </div>
