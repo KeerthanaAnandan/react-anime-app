@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 export default function ({ cart, setCart }) {
   return (
-    <div className="flex flex-col justify-center items-center  mt-auto min-h-screen">
+    <div className="flex flex-col justify-start items-center  mt-auto min-h-screen">
       <div className="flex flex-row justify-center items-center m-3">
         <Link to="/" className="block">
           <div>
@@ -27,7 +27,7 @@ export default function ({ cart, setCart }) {
     "
       >
         {/* box */}
-        <div className="flex flex-wrap bg-white  w-8/12 rounded-md">
+        <div className="flex flex-wrap bg-white  min-w-8/12 rounded-md">
           <div className="w-full p-2">
             {/* template */}
             {cart.length > 0 ? (
@@ -40,7 +40,9 @@ export default function ({ cart, setCart }) {
                 />
               ))
             ) : (
-              <p className="text-black">At First there was nothing!</p>
+              <div className="text-black w-full">
+                At First there was nothing!
+              </div>
             )}
           </div>
         </div>

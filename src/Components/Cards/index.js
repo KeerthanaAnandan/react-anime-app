@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Template from "./Template";
 import axios from "axios";
 import logo from "../../Images/logo.png";
+
 export default function ({ cart, setCart }) {
   const [anime, setAnime] = useState([]);
   const [search, setSearch] = useState("");

@@ -1,15 +1,49 @@
 import React, { useEffect, useState } from "react";
-
+import { useDrag } from "react-dnd";
 export default function Template({ Data, cart, setCart }) {
   useEffect(() => {
     localStorage.setItem("watchCartArr", JSON.stringify(cart));
   }, [cart]);
+  const [{ opacity }, drag] = useDrag(
+    () => ({
+      type: "box",
+      item: Data.title,
+
+      end(item, monitor) {
+        const dropResult = monitor.getDropResult();
+
+        if (item && dropResult) {
+          let alertMessage = "";
+          const isDropAllowed =
+            dropResult.allowedDropEffect === "copy" ||
+            dropResult.allowedDropEffect === dropResult.dropEffect;
+          if (isDropAllowed) {
+            if (cart.indexOf(Data) === -1) {
+              setCart((current) => [...current, Data]);
+              alertMessage = `${Data.title} Added To List Sucessfully!`;
+            } else alertMessage = `${Data.title} Already in Watch List !!`;
+          } else {
+            alertMessage = `Something Went Wrong, Try Again!`;
+          }
+          alert(alertMessage);
+        }
+      },
+      collect: (monitor) => ({
+        opacity: monitor.isDragging() ? 0.4 : 1,
+      }),
+    }),
+    [Data]
+  );
+
   const handleWatchList = () => {
-    setCart((current) => [...current, Data]);
+    if (cart.indexOf(Data) === -1) {
+      setCart((current) => [...current, Data]);
+      alert("Added to Watch List !");
+    } else alert("Already in Watch List !");
   };
 
   return (
-    <div className=" w-full md:w-1/2 lg:w-1/5 pl-5 pr-5 mb-5 ">
+    <div ref={drag} className=" w-full md:w-1/2 lg:w-1/5 pl-5 pr-5 mb-5 ">
       <div
         style={{
           background: `url(${Data.images.jpg.large_image_url}) no-repeat center center fixed  `,
